@@ -8,7 +8,7 @@
     <body>
         <?php
         //Tu código PHP aquí
-        echo "Hola, mundo, sigo siendo Candela!";
+        echo "Hola, mundo, sigo siendo Candela pero en Internet!";
         ?>
     </body>
 </html>
