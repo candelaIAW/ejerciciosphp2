@@ -3,7 +3,7 @@
 #24/10/24
 #Ejercicio 1
 $numero= rand(-10,10);
-echo "el numero vale $numero \n";
+echo "el numero es $numero \n";
 if ($numero>0){
     echo "El numero es positivo";
 } elseif($numero==0){
