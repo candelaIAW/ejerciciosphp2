@@ -1,4 +1,5 @@
 <?php
+
 //Definimos la variable booleana y la temperatura
 $lluvia = false;
 $temperatura = 25;

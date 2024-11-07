@@ -5,4 +5,6 @@ Modifica el tercer elemento del array para que sea otro animal diferente y muest
 
 $animales = array("Gato", "Perro", "Jirafa", "Elefante", "Avestruz");
 $animales[2] = "Koala";
-var_dump($animales);
+foreach ($animales as $x) {
+    echo "$x <br>";
+}

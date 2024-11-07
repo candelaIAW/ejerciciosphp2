@@ -11,5 +11,7 @@ $paises = array(
 
 $paises["Italia"] = "Venecia";
 
-var_dump($paises);
+foreach ($paises as $pais => $capital) {
+    echo "País: $pais, Capital: $capital<br>";
+};
 ?>

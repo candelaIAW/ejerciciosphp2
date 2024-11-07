@@ -6,4 +6,7 @@ $paises["España"] = "Madrid";
 $paises["Francia"] = "París";
 $paises["Italia"] = "Roma";
 
-var_dump($paises);
+foreach ($paises as $pais => $capital) {
+    echo "País: $pais, Capital: $capital<br>";
+};
+?>

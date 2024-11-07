@@ -4,6 +4,8 @@ Borra el segundo color del array y muestra el array actualizado. */
 
 $colores = array("Rojo", "Amarillo", "Azul", "Verde", "Naranja");
 array_splice($colores, 1, 1);
-var_dump($colores)
+foreach ($colores as $x) {
+    echo "$x <br>";
+}
 
 ?>

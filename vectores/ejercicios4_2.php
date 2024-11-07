@@ -4,6 +4,8 @@ Añade cinco nombres de ciudades al array y muestra el array completo en pantall
 
 $ciudades = array();
 array_push($ciudades, "Zaragoza", "Madrid", "Barcelona", "Valencia", "Salamanca");
-var_dump($ciudades);
+foreach ($ciudades as $x) {
+    echo "$x <br>";
+}
 ?>
 

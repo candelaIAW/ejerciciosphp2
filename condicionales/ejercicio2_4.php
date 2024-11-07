@@ -1,9 +1,9 @@
 <?php
+/* Crea un programa en php que genere un numero aleatorio entre 1 y 7.
+El programa debe mostrar el numero y el día de la semana siendo el lunes el día 1 y el domingo el día 7. */
 //Generamos un número aleatorio entre 1 y 7
 $dia = rand(1,7);
-//Muestra el número aleatorio
 echo "El número aleatorio es: $dia<br>";
-//Relacionamos los días de la semana correspondientes
 switch ($dia) {
     case 1:
         $dia = "Lunes";
@@ -30,7 +30,6 @@ switch ($dia) {
         echo "Número fuera de rango";
         break;
 }
-//Mostramos el día de la semana resultante
 echo "Día de la semana: $dia";
 ?>
     
