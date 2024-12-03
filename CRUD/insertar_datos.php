@@ -16,17 +16,18 @@ if ($conn->connect_error) {
 // Verificar si se enviaron datos por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
     $email = $_POST['email'];
 
     // Validar campos (opcional)
-    if (empty($nombre) || empty($email)) {
+    if (empty($nombre) || empty($apellidos) || empty($email)) {
         echo "Todos los campos son obligatorios.";
         exit;
     }
 
     // Preparar la consulta SQL
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email) VALUES (?, ?)");
-    $stmt->bind_param("ss", $nombre, $email);
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, apellidos, email) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nombre, $apellidos, $email);
 
     // Ejecutar la consulta
     if ($stmt->execute()) {

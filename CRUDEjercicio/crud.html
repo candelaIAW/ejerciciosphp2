@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Usuarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .acciones button {
+            margin: 0 5px;
+        }
+    </style>
+    <script>
+        function mostrarUsuarios() {
+            fetch('mostrar.php')
+                .then(response => response.text())
+                .then(data => document.getElementById('tabla-usuarios').innerHTML = data);
+        }
+
+        function enviarFormulario(url, formId) {
+            const formData = new FormData(document.getElementById(formId));
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                mostrarUsuarios();
+                document.getElementById(formId).reset();
+            });
+        }
+
+        function eliminarUsuario(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+                fetch('eliminar.php', {
+                    method: 'POST',
+                    body: new URLSearchParams({ id: id })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    mostrarUsuarios();
+                });
+            }
+        }
+
+        function editarUsuario(id) {
+            const nombre = prompt('Nuevo nombre:');
+            const apellido = prompt('Nuevo apellido:');
+            const email = prompt('Nuevo email:');
+            if (nombre && apellido && email) {
+                fetch('editar.php', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        id: id,
+                        nombre: nombre,
+                        apellido: apellido,
+                        email: email
+                    })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    mostrarUsuarios();
+                });
+            }
+        }
+    </script>
+</head>
+<body onload="mostrarUsuarios()">
+
+    <h1>CRUD de Usuarios</h1>
+
+    <!-- Formulario para Crear Usuario -->
+    <form id="form-crear" onsubmit="event.preventDefault(); enviarFormulario('crear.php', 'form-crear');">
+        <h2>Añadir Usuario</h2>
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="apellido" placeholder="Apellido" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Crear Usuario</button>
+    </form>
+
+    <!-- Tabla para Mostrar Usuarios -->
+    <section>
+        <h2>Usuarios Registrados</h2>
+        <div id="tabla-usuarios"></div>
+    </section>
+
+</body>
+</html>
